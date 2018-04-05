@@ -1,0 +1,13 @@
+[Unit]
+Description=bgScrapper Daemon
+After=network.target
+
+[Service]
+Type=oneshot
+User=raul
+WorkingDirectory=/home/raul
+ExecStart=/home/raul/bin/bgScrap
+RemainAfterExit=yes
+
+[Install]
+WantedBy=multi-user.target
