@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"net/http"
 	"regexp"
+	"strconv"
 	"strings"
 
 	"github.com/gocolly/colly"
@@ -16,7 +17,8 @@ func generateMilTorrentsFeed(urlBase string, cookies []*http.Cookie) (*feeds.Fee
 	var feed *feeds.Feed
 
 	if len(matches) == 4 {
-		for i := 1; i < 99; i++ {
+		var start, error = strconv.Atoi(matches[3])
+		for i := start; i < 99 && error == nil; i++ {
 			counter := 0
 			url := matches[1] + "-" + matches[2] + fmt.Sprintf("x%02d", i)
 			c := colly.NewCollector(colly.Async(false))
