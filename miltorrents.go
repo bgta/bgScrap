@@ -32,7 +32,7 @@ func generateMilTorrentsFeed(urlBase string, cookies []*http.Cookie) (*feeds.Fee
 
 			c.OnHTML("a[href]", func(e *colly.HTMLElement) {
 				link := e.Attr("href")
-				if strings.Contains(link, ".torrent") && !strings.Contains(link, "720") {
+				if strings.Contains(link, ".torrent") {
 					rei := regexp.MustCompile("showDownload.'(.*)','(.*)','(.*)','(.*).torrent'.")
 					matchesi := rei.FindStringSubmatch(link)
 					if len(matchesi) == 5 {
